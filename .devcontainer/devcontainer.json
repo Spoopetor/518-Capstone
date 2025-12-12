@@ -9,10 +9,10 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000, 4000],
+	"forwardPorts": [3000, 5173],
 	"portsAttributes": {
 		"3000": { "label": "Express App" },
-		"4000": { "label": "Vite Dev Server" }
+		"5173": { "label": "Vite Dev Server" }
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
