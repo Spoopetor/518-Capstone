@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 export default function AppNavbar() {
   return (
@@ -10,6 +11,7 @@ export default function AppNavbar() {
           <Navbar.Brand>Coin/Flip</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <LinkContainer to="/">
@@ -21,11 +23,16 @@ export default function AppNavbar() {
             <LinkContainer to="/leaderboard">
               <Nav.Link>Leaderboard</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
+        <div className="me-4 d-flex">
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
       </Container>
     </Navbar>
   );

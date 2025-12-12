@@ -10,13 +10,12 @@ import Login from './pages/Login.jsx';
 export default function App() {
   return (
     <Router>
-      <AppNavbar/>
+      <AppNavbar id="app-navbar"/>
         <div id="app-container" className="mt-4">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
     </Router>
