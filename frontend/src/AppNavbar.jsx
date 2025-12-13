@@ -17,11 +17,11 @@ export default function AppNavbar() {
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
-            </LinkContainer>
             <LinkContainer to="/leaderboard">
               <Nav.Link>Leaderboard</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/profile">
+              <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>
