@@ -30,7 +30,7 @@ const userSchema = new Schema({
   },
 });
 
-const UserModel = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 mongoose.connect(mongoDBURL)
   .then(() => {
@@ -45,6 +45,7 @@ mongoose.connect(mongoDBURL)
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+app.use(express.json());
 
 app.get("/health", (req, res) => {
   res.status(200).send("healthy");
@@ -52,6 +53,8 @@ app.get("/health", (req, res) => {
 
 app.post("/api/webhooks/createuser", async (req, res) => {
   try {
+
+    console.log(req.body);
     let id = req.body.data.id;
     let uname = req.body.data.username;
     let imUrl = req.body.data.image_url;
