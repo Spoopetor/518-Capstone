@@ -33,7 +33,7 @@ jobs:
         env: 
             VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_KEY }}
       - run: npm ci --prefix ./frontend/
-      - run: npm run dev --prefix ./frontend/
+      - run: npm run build --prefix ./frontend/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
