@@ -65,11 +65,14 @@ mongoose.connect(mongoDBURL)
 const app = express();
 
 const HTTPS_PORT = process.env.PORT || 8080;
-
+/**
 https.createServer(options, app).listen(HTTPS_PORT, () => {
   console.log(`HTTPS Server running on port ${HTTPS_PORT}`);
 });
-
+*/
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 app.use(express.json());
 app.use(cors({
   origin: '*',
