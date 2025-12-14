@@ -81,13 +81,13 @@ app.get("/health", (req, res) => {
 
 app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
   try {
-    if (req.params.uid === `user_${req.params.friendId}`) {
+    if (req.params.uid === `${req.params.friendId}`) {
       return res.status(400).json({ error: "Cannot add yourself as a friend" });
     }
 
-    const newFriend = await User.findOne({ uid: `user_${req.params.friendId}` });
+    const newFriend = await User.findOne({ uid: `${req.params.friendId}` });
     if (!newFriend) {
-      console.log(`Friend user not found: user_${req.params.friendId}`);
+      console.log(`Friend user not found: ${req.params.friendId}`);
       return res.status(404).json({ error: "Friend user not found" });
     }
 
