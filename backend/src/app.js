@@ -62,7 +62,7 @@ mongoose.connect(mongoDBURL)
 
 const app = express();
 
-HTTPS_PORT = process.env.PORT || 8080;
+const HTTPS_PORT = process.env.PORT || 8080;
 
 https.createServer(options, app).listen(HTTPS_PORT, () => {
   console.log(`HTTPS Server running on port ${HTTPS_PORT}`);
