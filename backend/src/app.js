@@ -4,6 +4,7 @@ import crypto from "crypto";
 dotenv.config();
 import mongoose, { mongo } from "mongoose";
 import Schema from 'mongoose/lib/schema.js';
+import cors from "cors";
 
 const mongoDBURL = process.env.MONGODB_URL;
 
