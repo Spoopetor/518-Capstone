@@ -84,7 +84,7 @@ app.get("/api/leaderboard", async (req, res) => {
     const topUsers = await User.find()
       .sort({ currentScore: -1 })
       .limit(25)
-      .select('uid name imageUrl currentScore country -_id');
+      .select('uid');
 
     console.log("Fetched leaderboard data");
     res.status(200).json(topUsers);
