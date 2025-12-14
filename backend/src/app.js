@@ -6,7 +6,7 @@ import mongoose, { mongo } from "mongoose";
 import Schema from 'mongoose/lib/schema.js';
 import cors from "cors";
 import https from "https";
-import { fstat } from "fs";
+import fs from "fs";
 
 const mongoDBURL = process.env.MONGODB_URL;
 
