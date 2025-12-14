@@ -1,3 +1,4 @@
+import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useUser} from '@clerk/clerk-react'
 import AppNavbar from './AppNavbar.jsx'

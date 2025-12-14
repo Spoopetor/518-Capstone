@@ -1,7 +1,9 @@
 import { React, useState } from 'react';
-import { Container, Image, Row, Col, Dropdown} from 'react-bootstrap';
+import { Container, Image, Row, Col, Dropdown, Button, Alert } from 'react-bootstrap';
 import { SignedIn, SignedOut, UserButton, useUser} from '@clerk/clerk-react'
 import useSWR from 'swr';
+import AddFriendForm from '../AddFriend';
+import UserSummaryList from '../UserSummary';
 
 const countryCodes = [
   "none",
@@ -41,7 +43,22 @@ const backendFetcher = async (url) => {
     return response.json();
 }
 
+function handleUpdate(setCurrState) {
+    let timer = setTimeout(() => {
+            setCurrState(false);
+        }, 1000);
+        console.log("Reloading Profile Page");
+        return () => clearTimeout(timer);
+}
+
 export default function Profile() {
+    const [currState, setCurrState] = useState(false);
+    const updateState = (newState) => {
+        setCurrState(newState);
+    }
+
+    const [showAlert, setShowAlert] = useState(false);
+
     const backendURL = import.meta.env.VITE_BACKEND_URL;
 
     const { isLoaded, isSignedIn, user } = useUser();
@@ -62,6 +79,10 @@ export default function Profile() {
         }
     );
 
+    if (currState) {
+        handleUpdate(setCurrState);
+    }
+
     if (!isLoaded) {
         return <p>Loading...</p>;
     }
@@ -78,7 +99,19 @@ export default function Profile() {
         return <h2>Error loading profile data: {error.message}</h2>;
     }
 
-    
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(user.id.substring(5));
+            setShowAlert(true);
+            const timer = setTimeout(() => {
+                setShowAlert(false);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+        catch (error) {
+            console.error('Failed to copy friend code:', error);
+        }
+    }
 
     const selectCountry = (eventKey => {
         setSelectedCountry(eventKey);
@@ -108,15 +141,15 @@ export default function Profile() {
             </SignedOut> 
             <SignedIn> 
             <Row className="justify-content-center">
-                <Col md={3}> 
+                <Col md={4}> 
                 <div className="d-flex align-items-center"> 
-                    <div className="p-3"> 
+                    <span className="p-3"> 
                     <Image src={data.imageUrl} alt="User Avatar" roundedCircle style={{ width: '80px', height: '80px' }}></Image> 
-                    </div> 
+                    </span> 
                     <h1>{data.name}</h1> 
                 </div> 
                 </Col>
-                <Col md={3}> 
+                <Col md={2}> 
                 <div className="d-flex align-items-center"> 
                     <span className="p-3">
                         {selectedCountry !== "none" ? <Image src={`https://flagsapi.com/${selectedCountry}/flat/64.png`} alt={`${selectedCountry} Flag`}/> : <Image src="./src/assets/earth.png" alt={`Earth`} style={{width: '64px', height: '64px'}}/>}
@@ -141,6 +174,51 @@ export default function Profile() {
                 </div> 
                 </Col> 
             </Row>
+            <Row className="justify-content-center mt-4">
+                <Col md={3}> 
+                <h3>Current Score: {data.currentScore}</h3>
+                </Col>
+                <Col md={3}> 
+                <h3><b>High Score: {data.highScore}!</b></h3>
+                </Col>
+            </Row>
+            <Row className="justify-content-center mt-4"> 
+                <Col md={2}>
+                <span>
+                    <h3>Friend Code: </h3>
+                </span>
+                <span>
+                    <Button variant="primary" onClick={handleCopy}>
+                        {user.id.substring(5)}
+                    </Button>
+                </span>
+                <span>
+                    {showAlert && 
+                        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-3">
+                            Friend code copied to clipboard!
+                        </Alert>
+                    }
+                </span>
+                </Col>
+                <Col md={2}>
+                <span>
+                    <h3>Add Friend </h3>
+                </span>
+                    <AddFriendForm updateState={updateState} onAddFriend={(friendCode) => {
+                        console.log('Friend added with code:', friendCode);
+                    }}/>
+                
+                </Col>
+            </Row>
+            <Row className="justify-content-center mt-4">
+                <h3>Friends List:</h3>
+                {data.friendIds && data.friendIds.length > 0 ? (
+                    <UserSummaryList updateState={updateState} userIds={data.friendIds} myId={user.id} />
+                ) : (
+                    <p>No friends added.</p>
+                )}
+            </Row>
+            
             </SignedIn> 
         </Row> 
         </Container>

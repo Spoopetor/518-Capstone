@@ -24,6 +24,10 @@
   flex: 1;
 }
 
+body {
+  background-color: rgb(189, 213, 255);
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@c
 
 export default function AppNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar variant="dark" expand="lg" className="mb-4 rounded-1" style={{backgroundColor: '#0e0644ff'}}>
       <Container fluid>
         <LinkContainer to="/">
           <Navbar.Brand>Coin/Flip</Navbar.Brand>
