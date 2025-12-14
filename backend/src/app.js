@@ -132,6 +132,8 @@ app.put("/api/webhooks/deleteuser", async (req, res) => {
     if (!deletedUser) {
       return res.status(404).json({ error: "User not found" });
     }
+    console.log(`Deleted user ID: ${id}`);
+    
     res.status(200).send(`Deleted User ${deletedUser.name} Successfully`);
   } catch (err) {
     console.error("Error deleting user:", err);
@@ -142,11 +144,12 @@ app.put("/api/webhooks/deleteuser", async (req, res) => {
 app.post("/api/webhooks/createuser", async (req, res) => {
   try {
 
-    console.log(req.body);
     let id = req.body.data.id;
     let uname = req.body.data.username;
     const hashHex = crypto.createHash('sha256').update(id).digest('hex');
     let imUrl = `https://www.gravatar.com/avatar/${hashHex}?d=identicon`;
+
+    console.log(`Creating user ID: ${id}, Username: ${uname}`);
 
     const newUser = new User({
       uid: id,
