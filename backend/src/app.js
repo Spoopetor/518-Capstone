@@ -100,7 +100,7 @@ app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
       await user.save();
     }
     console.log(`Added friend ID: ${req.params.friendId} to user ID: ${req.params.uid}`);
-    res.json(user);
+    res.status(200).json(user);
   } catch (err) {
     console.error("Error adding friend:", err);
     res.status(500).json({ error: err.message });
