@@ -47,6 +47,8 @@ const userSchema = new Schema({
   },
 });
 
+const PORT = process.env.PORT || 8080;
+
 const User = mongoose.model('User', userSchema);
 
 mongoose.connect(mongoDBURL)
