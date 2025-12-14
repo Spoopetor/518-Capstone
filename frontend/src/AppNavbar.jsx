@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react';
 
 export default function AppNavbar() {
   return (
@@ -20,17 +20,19 @@ export default function AppNavbar() {
             <LinkContainer to="/leaderboard">
               <Nav.Link>Leaderboard</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
-            </LinkContainer>
+            <SignedIn>
+              <LinkContainer to="/profile">
+                <Nav.Link>Profile</Nav.Link>
+              </LinkContainer>
+            </SignedIn>
           </Nav>
         </Navbar.Collapse>
         <div className="me-4 d-flex">
           <SignedOut>
-            <SignInButton />
+            <SignInButton redirectUrl="/profile" />
           </SignedOut>
           <SignedIn>
-            <UserButton />
+            <SignOutButton redirectUrl="/home" />
           </SignedIn>
         </div>
       </Container>
