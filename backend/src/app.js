@@ -64,6 +64,23 @@ app.get("/health", (req, res) => {
   res.status(200).send("healthy");
 });
 
+app.put("/api/user/country/:uid/:country", async (req, res) => {
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { uid: req.params.uid },
+      { country: req.params.country },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(updatedUser);
+  } catch (err) {
+    console.error("Error updating user country:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/api/user/score/:uid", async (req, res) => {
   try {
     const user = await User.findOne({ uid: req.params.uid });
