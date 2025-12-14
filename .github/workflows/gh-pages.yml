@@ -30,10 +30,10 @@ jobs:
         with:
           node-version: 20
           cache: npm
-        env: 
-            VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_KEY }}
       - run: npm ci --prefix ./frontend/
       - run: npm run build --prefix ./frontend/
+        env: 
+              VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./frontend/dist
