@@ -89,6 +89,7 @@ app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
       user.friendIds.push(req.params.friendId);
       await user.save();
     }
+    console.log(`Added friend ID: ${req.params.friendId} to user ID: ${req.params.uid}`);
     res.json(user);
   } catch (err) {
     console.error("Error adding friend:", err);
@@ -104,6 +105,7 @@ app.put("/api/user/unfriend/:uid/:friendId", async (req, res) => {
     }
     user.friendIds = user.friendIds.filter(id => id !== req.params.friendId);
     await user.save();
+    console.log(`Removed friend ID: ${req.params.friendId} from user ID: ${req.params.uid}`);
     res.json(user);
   } catch (err) {
     console.error("Error removing friend:", err);
@@ -121,6 +123,7 @@ app.put("/api/user/country/:uid/:country", async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
     }
+    console.log(`Updated country for user ID: ${req.params.uid} to ${req.params.country}`);
     res.json(updatedUser);
   } catch (err) {
     console.error("Error updating user country:", err);
@@ -134,6 +137,7 @@ app.get("/api/user/score/:uid", async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+    console.log(`Fetched score for user ID: ${req.params.uid}`);
     res.json({ currentScore: user.currentScore, highScore: user.highScore });
   } catch (err) {
     console.error("Error fetching user score:", err);
@@ -152,6 +156,7 @@ app.put("/api/user/:uid/:score", async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
     }
+    console.log(`Updated score for user ID: ${req.params.uid} to ${score}`);
     res.json(updatedUser);
   } catch (err) {
     console.error("Error updating user score:", err);
@@ -165,6 +170,7 @@ app.get("/api/user/:uid", async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+    console.log(`Fetched user ID: ${req.params.uid}`);
     res.json(user);
   } catch (err) {
     console.error("Error fetching user:", err);
