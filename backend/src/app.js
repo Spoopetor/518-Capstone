@@ -5,8 +5,15 @@ dotenv.config();
 import mongoose, { mongo } from "mongoose";
 import Schema from 'mongoose/lib/schema.js';
 import cors from "cors";
+import https from "https";
+import { fstat } from "fs";
 
 const mongoDBURL = process.env.MONGODB_URL;
+
+const options = {
+  key: fs.readFileSync("./keys/key.pem"),
+  cert: fs.readFileSync("./keys/cert.pem")
+};
 
 const userSchema = new Schema({
   uid: {
@@ -54,7 +61,13 @@ mongoose.connect(mongoDBURL)
   });
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+
+HTTPS_PORT = process.env.PORT || 8080;
+
+https.createServer(options, app).listen(HTTPS_PORT, () => {
+  console.log(`HTTPS Server running on port ${HTTPS_PORT}`);
+});
+
 app.use(express.json());
 app.use(cors({
   origin: '*',
@@ -133,7 +146,7 @@ app.put("/api/webhooks/deleteuser", async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
     console.log(`Deleted user ID: ${id}`);
-    
+
     res.status(200).send(`Deleted User ${deletedUser.name} Successfully`);
   } catch (err) {
     console.error("Error deleting user:", err);
