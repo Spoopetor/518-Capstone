@@ -79,7 +79,7 @@ app.get("/health", (req, res) => {
   res.status(200).send("healthy");
 });
 
-app.get("api/leaderboard", async (req, res) => {
+app.get("/api/leaderboard", async (req, res) => {
   try {
     const topUsers = await User.find()
       .sort({ currentScore: -1 })
