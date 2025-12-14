@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import crypto from "crypto";
 dotenv.config();
 import mongoose, { mongo } from "mongoose";
 import Schema from 'mongoose/lib/schema.js';
@@ -61,7 +62,8 @@ app.post("/api/webhooks/createuser", async (req, res) => {
     console.log(req.body);
     let id = req.body.data.id;
     let uname = req.body.data.username;
-    let imUrl = req.body.data.image_url;
+    const hashHex = crypto.createHash('sha256').update(id).digest('hex');
+    imUrl = `https://www.gravatar.com/avatar/${hashHex}?d=identicon`;
 
     const newUser = new User({
       uid: id,
