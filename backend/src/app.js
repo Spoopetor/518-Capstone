@@ -79,6 +79,38 @@ app.get("/health", (req, res) => {
   res.status(200).send("healthy");
 });
 
+app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
+  try {
+    const user = await User.findOne({ uid: req.params.uid });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (!user.friendIds.includes(req.params.friendId)) {
+      user.friendIds.push(req.params.friendId);
+      await user.save();
+    }
+    res.json(user);
+  } catch (err) {
+    console.error("Error adding friend:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/api/user/unfriend/:uid/:friendId", async (req, res) => {
+  try {
+    const user = await User.findOne({ uid: req.params.uid });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    user.friendIds = user.friendIds.filter(id => id !== req.params.friendId);
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.error("Error removing friend:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.put("/api/user/country/:uid/:country", async (req, res) => {
   try {
     const updatedUser = await User.findOneAndUpdate(
