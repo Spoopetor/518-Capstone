@@ -81,6 +81,11 @@ app.get("/health", (req, res) => {
 
 app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
   try {
+    const newFriend = await User.findOne({ uid: `user_${req.params.friendId}` });
+    if (!newFriend) {
+      return res.status(404).json({ error: "Friend user not found" });
+    }
+
     const user = await User.findOne({ uid: req.params.uid });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
