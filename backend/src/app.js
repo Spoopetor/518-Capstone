@@ -79,6 +79,21 @@ app.get("/health", (req, res) => {
   res.status(200).send("healthy");
 });
 
+app.get("api/leaderboard", async (req, res) => {
+  try {
+    const topUsers = await User.find()
+      .sort({ currentScore: -1 })
+      .limit(25)
+      .select('uid name imageUrl currentScore country -_id');
+
+    console.log("Fetched leaderboard data");
+    res.status(200).json(topUsers);
+  } catch (err) {
+    console.error("Error fetching leaderboard data:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.put("/api/user/friend/:uid/:friendId", async (req, res) => {
   try {
     if (req.params.uid === `${req.params.friendId}`) {
