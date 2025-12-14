@@ -13,6 +13,7 @@ export default function App() {
       <AppNavbar id="app-navbar"/>
         <div id="app-container" className="mt-4">
           <Routes>
+            <Route index element={<Home />} />
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
