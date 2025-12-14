@@ -11,8 +11,8 @@ import fs from "fs";
 const mongoDBURL = process.env.MONGODB_URL;
 
 const options = {
-  key: fs.readFileSync("./keys/key.pem"),
-  cert: fs.readFileSync("./keys/cert.pem")
+  key: fs.readFileSync("./keys/privkey.pem"),
+  cert: fs.readFileSync("./keys/fullchain.pem")
 };
 
 const userSchema = new Schema({
