@@ -63,7 +63,7 @@ app.post("/api/webhooks/createuser", async (req, res) => {
     let id = req.body.data.id;
     let uname = req.body.data.username;
     const hashHex = crypto.createHash('sha256').update(id).digest('hex');
-    imUrl = `https://www.gravatar.com/avatar/${hashHex}?d=identicon`;
+    let imUrl = `https://www.gravatar.com/avatar/${hashHex}?d=identicon`;
 
     const newUser = new User({
       uid: id,
