@@ -28,6 +28,10 @@ const userSchema = new Schema({
     type: [String],
     default: [],
   },
+  country: {
+    type: String,
+    default: 'none',
+  },
 });
 
 const User = mongoose.model('User', userSchema);
