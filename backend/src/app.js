@@ -56,6 +56,33 @@ app.get("/health", (req, res) => {
   res.status(200).send("healthy");
 });
 
+app.get("/api/user/:uid", async (req, res) => {
+  try {
+    const user = await User.findOne({ uid: req.params.uid });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error("Error fetching user:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/api/webhooks/deleteuser", async (req, res) => {
+  try {
+    let id = req.body.data.id;
+    const deletedUser = await User.findOneAndDelete({ uid: id });
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).send(`Deleted User ${deletedUser.name} Successfully`);
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res.status(400).json({error: err.message});
+  }
+});
+
 app.post("/api/webhooks/createuser", async (req, res) => {
   try {
 
