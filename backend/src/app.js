@@ -22,7 +22,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  score: {
+  currentScore: {
+    type: Number,
+    default: 0,
+  },
+  highScore: {
     type: Number,
     default: 0,
   },
@@ -58,6 +62,37 @@ app.use(cors({
 
 app.get("/health", (req, res) => {
   res.status(200).send("healthy");
+});
+
+app.get("/api/user/score/:uid", async (req, res) => {
+  try {
+    const user = await User.findOne({ uid: req.params.uid });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ currentScore: user.currentScore, highScore: user.highScore });
+  } catch (err) {
+    console.error("Error fetching user score:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/api/user/:uid/:score", async (req, res) => {
+  try {
+    const { score } = req.body;
+    const updatedUser = await User.findOneAndUpdate(
+      { uid: req.params.uid },
+      { currentScore: score, highScore: Math.max(score, '$highScore') },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(updatedUser);
+  } catch (err) {
+    console.error("Error updating user score:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get("/api/user/:uid", async (req, res) => {
