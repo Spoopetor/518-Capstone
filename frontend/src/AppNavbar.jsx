@@ -29,10 +29,10 @@ export default function AppNavbar() {
         </Navbar.Collapse>
         <div className="me-4 d-flex">
           <SignedOut>
-            <SignInButton redirectUrl="/profile" />
+            <SignInButton redirectUrl="/" />
           </SignedOut>
           <SignedIn>
-            <SignOutButton redirectUrl="/home" />
+            <SignOutButton redirectUrl="/" />
           </SignedIn>
         </div>
       </Container>
