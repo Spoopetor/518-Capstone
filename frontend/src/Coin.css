@@ -1,0 +1,59 @@
+coin-container {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  /* Key CSS property for 3D effect */
+  perspective: 1000px; 
+}
+
+.coin-face {
+  width: 10%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 40%;
+  left: 47.5%;
+  /* Ensures the back face is hidden until flipped */
+  backface-visibility: hidden; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-container.result-tails .coin-face.front {
+    transform: rotateX(180deg);
+}
+
+.coin-container.result-tails .coin-face.back {
+    transform: rotateX(0deg);
+}
+
+.coin-face.front {
+  background-color: #ffc107;
+  transform: rotateX(0deg);
+}
+
+.coin-face.back {
+  background-color: #007bff;
+  transform: rotateX(180deg);
+}
+
+
+.coin-container.flipped.tails .coin-face.front {
+  transform: rotateX(3420deg);
+  transition: transform 2s;
+}
+
+.coin-container.flipped.tails .coin-face.back {
+  transform: rotateX(3600deg);
+  transition: transform 2s;
+}
+
+.coin-container.flipped.heads .coin-face.front{
+  transform: rotateX(3600deg);
+  transition: transform 2s;
+}
+
+.coin-container.flipped.heads .coin-face.back{
+  transform: rotateX(3780deg);
+  transition: transform 2s;
+}

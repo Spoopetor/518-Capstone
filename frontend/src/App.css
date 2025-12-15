@@ -26,6 +26,11 @@
 
 body {
   background-color: rgb(189, 213, 255);
+  height: 85vh;
+}
+
+#app-container {
+  min-height: 85vh;
 }
 
 @keyframes logo-spin {

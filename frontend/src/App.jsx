@@ -36,7 +36,6 @@ export default function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/" element={<Home />} />
-            <Route path="/518-Capstone" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route 

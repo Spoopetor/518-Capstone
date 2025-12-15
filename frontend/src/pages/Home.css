@@ -1,0 +1,8 @@
+#home-page {
+    height: 85vh
+}
+
+#flip-button {
+    position: absolute;
+    bottom: 40px;
+}
