@@ -41,7 +41,7 @@ const UserSummaryItem = ({ userId, index}) => {
 
     return (
     <Card body className="d-flex justify-content-between align-items-left p-0">
-        <Row className="w-240 d-flex justify-content-between align-items-center">
+        <Row className="w-500 d-flex justify-content-between align-items-center">
         <Col><h5>#{index+1}</h5></Col>
         <Col><Image src={userData.imageUrl} alt="User Avatar" style={{ width: '32px', height: '32px' }}></Image></Col>
         <Col><h5 style={{ color: "black" }}>{userData.name}</h5></Col>
