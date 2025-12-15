@@ -1,0 +1,22 @@
+{
+  "name": "javascript-node-2",
+  "version": "1.0.0",
+  "description": "## Frontend Setup",
+  "main": "index.js",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spoopetor/518-Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spoopetor/518-Capstone/issues"
+  },
+  "homepage": "https://github.com/Spoopetor/518-Capstone#readme"
+}

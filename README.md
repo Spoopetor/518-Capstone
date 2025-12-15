@@ -1,0 +1,80 @@
+# Coin/Flip
+
+# Project setup
+
+This project requires npm to be installed. Currently npm version 10.9.2 and node v22.16.0 are used.
+
+Running ```npm install``` in the base directory will install depandencies such as Playwright.
+
+## Frontend Setup
+
+To build the website, navigate to the */frontend* folder of the repository and create a ***.env*** file.
+
+Inside ***.env*** should be environment variables for the clerk API key and Backend API URL.
+```
+VITE_CLERK_PUBLISHABLE_KEY=<key>
+VITE_BACKEND_URL=<url>
+```
+
+Once the environment variables are set, run the following commands to build the vite project.
+
+```
+npm install
+npm run build
+```
+
+After this is done the page can be deployed. The main page is deployed using a Github Actions workflow which builds and deploys the website to [coinflip.spoopetor.com](https://coinflip.spoopetor.com)
+
+Using ```npm run dev``` the frontend can be hosted locally for testing at *http://localhost:5173*
+
+
+## Backend Setup
+
+To run the backend, first set up access to a MongoDB database. For the purposes of this project **MongoDB Atlas** was the database host.
+
+Next, navigate to the */backend* folder of the repository and again create a ***.env*** file.
+
+Inside should be an environment variable for the MongoDB connection url.
+
+```
+MONGODB_URL=<url>
+```
+
+Additionally two more files are required to allow HTTPS to function.
+Within the */backend/keys/* folder there should be two files.
+
+```
+privkey.pem     --ssl key
+fullchain.pem   --ssl cert
+```
+
+These files can be obtained using certbot once the correct dns records are set up for both the frontend and backend.
+
+For this project, the backend is hosted at [cfbackend.spoopetor.com:8080](https://cfbackend.spoopetor.com:8080)
+
+After this, run the following commands to start up the backend API.
+
+```
+npm install
+npm run start
+```
+
+For this project the backend is hosted on an Ubuntu webserver and will run on port 8080 for HTTPS.
+
+
+# Architecture
+
+# Frontend
+The frontend is a vite react website with additional bootstrap components.
+
+# Backend
+The backend is an expressjs api that allows for CRUD operations to be handled and synced to the database.
+
+# Database
+The database is a mongoDB database which stores user data so it remains persistent.
+
+
+# Attributions
+A lot of the set up of this project was based on instructions from previous assignments in combination with stackoverflow. The bootstrap and react docs were used frequently and VSCode's built in AI assistant was used as well.
+
+The flag images used are from the external api [flagsapi](https://flagsapi.com/) and the earth image is an edited Adobe stock image.
