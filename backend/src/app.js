@@ -175,7 +175,7 @@ app.put("/api/user/:uid/:score", async (req, res) => {
     const score = parseInt(req.params.score);
     const updatedUser = await User.findOneAndUpdate(
       { uid: req.params.uid },
-      { currentScore: score, highScore: Math.max(score, '$highScore') },
+      { currentScore: score, $max: { highScore: score } },
       { new: true }
     );
     if (!updatedUser) {
