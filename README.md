@@ -1,5 +1,13 @@
 # Coin/Flip
 
+## Submission Checklist:
++ Frontend: https://coinflip.spoopetor.com/
++ Backend: https://cfbackend.spoopetor.com:8080
++ Video: https://youtu.be/SNCV5yV2b1Y
++ Instructions Below **VVV**
++ Run Playwright tests with ```npx playwright test```
++ ![Design Artifact](https://raw.githubusercontent.com/Spoopetor/518-Capstone/refs/heads/main/Add%20Friend%20Sequence%20Diagram.drawio.png)
+
 # Project setup
 
 This project requires npm to be installed. Currently npm version 10.9.2 and node v22.16.0 are used.
