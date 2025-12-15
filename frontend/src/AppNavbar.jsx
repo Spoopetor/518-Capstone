@@ -32,6 +32,7 @@ export default function AppNavbar() {
             <SignInButton redirectUrl="/" />
           </SignedOut>
           <SignedIn>
+            <UserButton redirectUrl="/" />
             <SignOutButton redirectUrl="/" />
           </SignedIn>
         </div>

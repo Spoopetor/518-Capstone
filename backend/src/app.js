@@ -205,12 +205,13 @@ app.get("/api/user/:uid", async (req, res) => {
 
 app.put("/api/webhooks/deleteuser", async (req, res) => {
   try {
-    let id = req.body.data.id;
-    const deletedUser = await User.findOneAndDelete({ uid: id });
+    let delId = req.body.data.id;
+    const deletedUser = await User.findOneAndDelete({ uid: delId });
     if (!deletedUser) {
+      console.log(`User not found for deletion: ${delId}`);
       return res.status(404).json({ error: "User not found" });
     }
-    console.log(`Deleted user ID: ${id}`);
+    console.log(`Deleted user ID: ${delId}`);
 
     res.status(200).send(`Deleted User ${deletedUser.name} Successfully`);
   } catch (err) {
