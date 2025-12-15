@@ -48,7 +48,7 @@ const UserSummaryItem = ({ userId, index}) => {
         <Col><h5>{userData.currentScore}</h5></Col>
         <Col>
             <span className="p-1">
-                {userData.country !== "none" ? <Image src={`https://flagsapi.com/${userData.country}/flat/32.png`} alt={`${userData.country} Flag`}/> : <Image src="./src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
+                {userData.country !== "none" ? <Image src={`https://flagsapi.com/${userData.country}/flat/32.png`} alt={`${userData.country} Flag`}/> : <Image src="https://github.com/Spoopetor/518-Capstone/blob/main/frontend/src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
             </span></Col>
         </Row>
     </Card>

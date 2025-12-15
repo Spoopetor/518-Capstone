@@ -152,7 +152,7 @@ export default function Profile() {
                 <Col md={2}> 
                 <div className="d-flex align-items-center"> 
                     <span className="p-3">
-                        {selectedCountry !== "none" ? <Image src={`https://flagsapi.com/${selectedCountry}/flat/64.png`} alt={`${selectedCountry} Flag`}/> : <Image src="./src/assets/earth.png" alt={`Earth`} style={{width: '64px', height: '64px'}}/>}
+                        {selectedCountry !== "none" ? <Image src={`https://flagsapi.com/${selectedCountry}/flat/64.png`} alt={`${selectedCountry} Flag`}/> : <Image src="https://github.com/Spoopetor/518-Capstone/blob/main/frontend/src/assets/earth.png" alt={`Earth`} style={{width: '64px', height: '64px'}}/>}
                     </span>
                     <Dropdown onSelect={selectCountry}>
                     <Dropdown.Toggle variant="success" id="dropdown-country">
@@ -163,7 +163,7 @@ export default function Profile() {
                             <Dropdown.Item key={code} eventKey={code}>
                                 <Container flex>
                                     <span className="p-1">
-                                        {code !== "none" ? <Image src={`https://flagsapi.com/${code}/flat/32.png`} alt={`${code} Flag`}/> : <Image src="./src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
+                                        {code !== "none" ? <Image src={`https://flagsapi.com/${code}/flat/32.png`} alt={`${code} Flag`}/> : <Image src="https://github.com/Spoopetor/518-Capstone/blob/main/frontend/src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
                                     </span>
                                     <b>{code === "none" ? "Earth" : code}</b>
                                 </Container> 
