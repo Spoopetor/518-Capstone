@@ -203,7 +203,7 @@ app.get("/api/user/:uid", async (req, res) => {
   }
 });
 
-app.put("/api/webhooks/deleteuser", async (req, res) => {
+app.post("/api/webhooks/deleteuser", async (req, res) => {
   try {
     let delId = req.body.data.id;
     const deletedUser = await User.findOneAndDelete({ uid: delId });
