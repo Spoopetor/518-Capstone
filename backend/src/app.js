@@ -172,7 +172,7 @@ app.get("/api/user/score/:uid", async (req, res) => {
 
 app.put("/api/user/:uid/:score", async (req, res) => {
   try {
-    const { score } = req.body;
+    const score = req.params.score
     const updatedUser = await User.findOneAndUpdate(
       { uid: req.params.uid },
       { currentScore: score, highScore: Math.max(score, '$highScore') },
