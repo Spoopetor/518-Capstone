@@ -90,7 +90,7 @@ export default function Home() {
             </Row>
             <Row className="justify-content-center mt-3">
                 <Col className="d-flex justify-content-center">
-                    <Button onClick={flipCoin} className="hide">
+                    <Button onClick={flipCoin} disabled={isFlipped}className="hide">
                         <div className={`coin-container ${isFlipped ? 'flipped' : ''} ${result} result-${result}`}>
                             {console.log(result)}
                             <Card className="coin-face front rounded-circle">
@@ -112,7 +112,7 @@ export default function Home() {
                     </Button>
                 </Col>
             </Row>
-            <Button id="flip-button" onClick={flipCoin} className="mt-3 p-4">
+            <Button id="flip-button" onClick={flipCoin} disabled={isFlipped} className="mt-3 p-4">
                 Toss Coin
             </Button>
         </Container>
