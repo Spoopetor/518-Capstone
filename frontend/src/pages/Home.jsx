@@ -90,24 +90,26 @@ export default function Home() {
             </Row>
             <Row className="justify-content-center mt-3">
                 <Col className="d-flex justify-content-center">
-                    <div className={`coin-container ${isFlipped ? 'flipped' : ''} ${result} result-${result}`}>
-                        {console.log(result)}
-                        <Card className="coin-face front rounded-circle">
-                        <Card.Body className="d-flex justify-content-center align-items-center">
-                            <Card.Text className="fs-1 fw-bold">
-                            :D
-                            </Card.Text>
-                        </Card.Body>
-                        </Card>
-                        {/* Back of the coin */}
-                        <Card className="coin-face back rounded-circle">
-                        <Card.Body className="d-flex justify-content-center align-items-center">
-                            <Card.Text className="fs-1 fw-bold">
-                            /
-                            </Card.Text>
-                        </Card.Body>
-                        </Card>
-                    </div>
+                    <Button onClick={flipCoin} className="hide">
+                        <div className={`coin-container ${isFlipped ? 'flipped' : ''} ${result} result-${result}`}>
+                            {console.log(result)}
+                            <Card className="coin-face front rounded-circle">
+                            <Card.Body className="d-flex justify-content-center align-items-center">
+                                <Card.Text className="fs-1 fw-bold">
+                                :D
+                                </Card.Text>
+                            </Card.Body>
+                            </Card>
+                            {/* Back of the coin */}
+                            <Card className="coin-face back rounded-circle">
+                            <Card.Body className="d-flex justify-content-center align-items-center">
+                                <Card.Text className="fs-1 fw-bold">
+                                /
+                                </Card.Text>
+                            </Card.Body>
+                            </Card>
+                        </div>
+                    </Button>
                 </Col>
             </Row>
             <Button id="flip-button" onClick={flipCoin} className="mt-3 p-4">

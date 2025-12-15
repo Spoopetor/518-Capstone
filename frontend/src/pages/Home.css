@@ -6,3 +6,12 @@
     position: absolute;
     bottom: 40px;
 }
+
+.hide {
+  background-color: transparent; /* Makes the background clear */
+  border: none;                 /* Removes the border */
+  padding: 0;                   /* Removes padding */
+  color: inherit;               /* Inherits text color from the parent container */
+  cursor: pointer;              /* Keeps the hand cursor if it's meant to be clickable */
+  /* Add any other styles to blend it in */
+}
