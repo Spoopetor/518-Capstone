@@ -41,14 +41,14 @@ const UserSummaryItem = ({ userId, index}) => {
 
     return (
     <Card body className="d-flex justify-content-between align-items-left p-0">
-        <Row className="w-150 d-flex justify-content-between align-items-center">
+        <Row className="w-240 d-flex justify-content-between align-items-center">
         <Col><h5>#{index+1}</h5></Col>
         <Col><Image src={userData.imageUrl} alt="User Avatar" style={{ width: '32px', height: '32px' }}></Image></Col>
         <Col><h5 style={{ color: "black" }}>{userData.name}</h5></Col>
         <Col><h5>{userData.currentScore}</h5></Col>
         <Col>
             <span className="p-1">
-                {userData.country !== "none" ? <Image src={`https://flagsapi.com/${userData.country}/flat/32.png`} alt={`${userData.country} Flag`}/> : <Image src="https://github.com/Spoopetor/518-Capstone/blob/main/frontend/src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
+                {userData.country !== "none" ? <Image src={`https://flagsapi.com/${userData.country}/flat/32.png`} alt={`${userData.country} Flag`}/> : <Image src="https://raw.githubusercontent.com/Spoopetor/518-Capstone/refs/heads/main/frontend/src/assets/earth.png" alt={`Earth`} style={{width: '32px', height: '32px'}}/>}
             </span></Col>
         </Row>
     </Card>
