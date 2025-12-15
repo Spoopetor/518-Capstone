@@ -213,7 +213,7 @@ export default function Profile() {
             <Row className="justify-content-center mt-4">
                 <h3>Friends List:</h3>
                 {data.friendIds && data.friendIds.length > 0 ? (
-                    <UserSummaryList updateState={updateState} userIds={data.friendIds} myId={user.id} />
+                    <UserSummaryList userIds={data.friendIds} myId={user.id} />
                 ) : (
                     <p>No friends added.</p>
                 )}
