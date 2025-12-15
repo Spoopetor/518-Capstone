@@ -61,6 +61,9 @@ npm run start
 
 For this project the backend is hosted on an Ubuntu webserver and will run on port 8080 for HTTPS.
 
+# Testing
+Playwright testing can be run in the repository by running ```npx playwright test``` which will automatically run some tests on the website.
+
 
 # Architecture
 
